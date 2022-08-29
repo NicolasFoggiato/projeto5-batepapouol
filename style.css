@@ -6,7 +6,7 @@ body{
 }
 
 .container{
-height: 700px;
+height: 550px;
 background-color: #E5E5E5;
 width: 400px;
 margin: auto;
@@ -39,7 +39,7 @@ margin: auto;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
-    margin-top: 450px;
+    
     
 }
 
@@ -65,7 +65,7 @@ input::placeholder{
     cursor: pointer;
 }
 
-.entrouSaiu {
+.mensagensStatus {
     width: 400px;
     height: 40px;
     background-color: #DCDCDC;
@@ -75,7 +75,7 @@ input::placeholder{
     flex-wrap: wrap;
 }
 
-.mensagensPublicas{
+.mensagensNormais{
     width: 400px;
     height: 40px;
     background-color: white;
@@ -110,4 +110,12 @@ input::placeholder{
 
 .texto{
     margin-left: 5px;
+}
+
+.caixaConversa{
+    overflow-y: scroll;
+    height: 400px;
+    width: 400px;
+    overflow-x: none;
+    
 }
