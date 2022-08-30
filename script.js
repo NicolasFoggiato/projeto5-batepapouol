@@ -1,11 +1,10 @@
 let nome = prompt ("Por favor, digite seu nome!")
 let chat = [];
-let objetoNome = {name: nome}
 let enviarMsg =  ''
 function enviarNome(){
 
 const promessa = axios.post ('https://mock-api.driven.com.br/api/v6/uol/participants',
-objetoNome
+{name: nome}
 )
 promessa.then(buscarMensagens);
 promessa.catch(deuErro)
@@ -31,7 +30,7 @@ function buscarMensagens(){
         caixaConversa.innerHtml=''
         
         for(i=0; i<chat.length; i++)
-        { console.log('alo');
+        { 
              if (chat[i].type === "status") { 
                 caixaConversa.innerHTML += `
                 <div class="mensagensStatus">
@@ -73,26 +72,27 @@ function buscarMensagens(){
     function enviarMensagem (){
        
        console.log('ola tudo bem');
-        enviarMsg =  document.querySelector('.botao').value
-       let objeto = {
-             from: nome,
-             to: 'Todos',
-             text: enviarMsg,
-             type: "message" // ou "private_message" para o bônus
-          }
-
-       let promessa = axios.post ('https://mock-api.driven.com.br/api/v6/uol/messages', objeto)
-       promessa.then(mostrarMensagens);
-       promessa.catch(erroAtualizar)
+        enviarMsg =  document.querySelector('.botao')
+        let promessa = axios.post ('https://mock-api.driven.com.br/api/v6/uol/messages',  {
+          from: nome,
+            to: 'Todos',
+            text: enviarMsg.value,
+            type: "message" // ou "private_message" para o bônus
+            })
+       promessa.then(console.log('teste') );
+       
 
 
     }
 
     function manterConexao(){
         const promessa = axios.post("https://mock-api.driven.com.br/api/v6/uol/status",
-        objetoNome
-   )git
-        promessa.catch(erroAtualizar)
+        {name: nome}
+       
+   )
+   promessa.then(mostrarMensagens);
+   
+   // promessa.catch(erroAtualizar)
 }
 
     function deuErro(){
@@ -100,10 +100,10 @@ function buscarMensagens(){
     window.location.reload()
 }
 
-    function erroAtualizar(){
-        alert("Você ficou inativo")
-        window.location.reload()
-    }
+   // function erroAtualizar(){
+     //   alert("Você ficou inativo")
+       // window.location.reload()
+    //}
 
-// setInterval(manterConexao, 5000);
-// setInterval(mostrarMensagens, 3000);
+//setInterval(manterConexao, 5000);
+setInterval(buscarMensagens, 3000);
